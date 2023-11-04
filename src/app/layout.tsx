@@ -1,25 +1,20 @@
 import "./globals.css";
-import "@rainbow-me/rainbowkit/styles.css";
+import { Inter, Bricolage_Grotesque } from "next/font/google";
 
-import { Inter } from "next/font/google";
-
-import { Container } from "@/components/layout/container";
-import { Footer } from "@/components/layout/footer";
-import { Navbar } from "@/components/layout/navbar";
-import { Toaster } from "@/components/ui/toast";
+import { Layout } from "@/components/layout/layout";
+import { siteConfig } from "@/config/site";
+import { cn } from "@/lib/utils";
 
 import { Providers } from "./providers";
 
 import type { Metadata } from "next";
 
-const inter = Inter({ subsets: ["latin"] });
+const fontSans = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
-export const siteConfig = {
-  name: "My dApp",
-  description: "This is my dApp",
-  url: "https://localhost:3000",
-  ogImage: "https://localhost:3000/og.jpg",
-};
+const fontHeading = Bricolage_Grotesque({
+  subsets: ["latin"],
+  variable: "--font-heading",
+});
 
 export const metadata: Metadata = {
   title: {
@@ -49,16 +44,15 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={inter.className}>
+      <body
+        className={cn(
+          "min-h-screen bg-background font-sans antialiased",
+          fontSans.variable,
+          fontHeading.variable,
+        )}
+      >
         <Providers>
-          <div className="flex min-h-screen flex-col">
-            <Navbar />
-            <main className="flex-1 pb-20">
-              <Container>{children}</Container>
-            </main>
-            <Footer />
-          </div>
-          <Toaster />
+          <Layout>{children}</Layout>
         </Providers>
       </body>
     </html>

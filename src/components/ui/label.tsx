@@ -1,25 +1,21 @@
-import { clsx } from "clsx";
-import { ElementType, LabelHTMLAttributes } from "react";
-import { twMerge } from "tailwind-merge";
+"use client";
 
-export interface LabelProps extends LabelHTMLAttributes<HTMLLabelElement> {
-  className?: string;
-  as?: ElementType;
-}
+import * as LabelPrimitive from "@radix-ui/react-label";
+import { cva, type VariantProps } from "class-variance-authority";
+import * as React from "react";
 
-export const Label = ({ children, htmlFor, className, as: Tag = "label" }: LabelProps) => {
-  return (
-    <Tag
-      className={twMerge(
-        clsx(
-          "mb-1 flex w-full items-center gap-2 text-sm font-semibold",
-          { "cursor-pointer": htmlFor },
-          className,
-        ),
-      )}
-      htmlFor={htmlFor}
-    >
-      {children}
-    </Tag>
-  );
-};
+import { cn } from "@/lib/utils";
+
+const labelVariants = cva(
+  "text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70",
+);
+
+const Label = React.forwardRef<
+  React.ElementRef<typeof LabelPrimitive.Root>,
+  React.ComponentPropsWithoutRef<typeof LabelPrimitive.Root> & VariantProps<typeof labelVariants>
+>(({ className, ...props }, ref) => (
+  <LabelPrimitive.Root ref={ref} className={cn(labelVariants(), className)} {...props} />
+));
+Label.displayName = LabelPrimitive.Root.displayName;
+
+export { Label };
