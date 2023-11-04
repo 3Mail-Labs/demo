@@ -1,11 +1,23 @@
 "use client";
 
-import { Subscribe } from "@/components/subscribe";
+import { useWeb3Modal } from "@web3modal/wagmi/react";
+import { useEffect } from "react";
+
+// import { Subscribe } from "@/components/subscribe";
 
 export default function Home() {
+  const { open } = useWeb3Modal();
+
+  useEffect(() => {
+    open();
+  }, [open]);
+
   return (
     <div>
-      <Subscribe authorizedUser="0x0F45421E8DC47eF9edd8568a9D569b6fc7Aa7AC6" senderName="AAVE" />
+      {/* <Subscribe
+        authorizedUser="0x26FddC1C2c84e61457734a17C6818a6E063644ec"
+        senderName="Yo Protocol"
+      /> */}
     </div>
   );
 }
