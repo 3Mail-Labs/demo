@@ -26,7 +26,7 @@ type SubscribeData = z.infer<typeof subscribeSchema>;
 
 interface SubscribeProps {
   authorizedUser: string;
-  senderName: string;
+  senderName?: string;
 }
 
 export default function Subscribe({ authorizedUser, senderName }: SubscribeProps) {
@@ -156,7 +156,7 @@ export default function Subscribe({ authorizedUser, senderName }: SubscribeProps
             disabled={isLoading}
           >
             {isLoading && <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />}
-            Subscribe to {senderName}
+            Subscribe {senderName && `to ${senderName}`}
           </button>
         ) : (
           <Button type="button" onClick={() => open()}>

@@ -11,10 +11,7 @@ export default function Home() {
         <ChainSwitch />
         <WalletStatus />
       </div>
-      <Subscribe
-        authorizedUser="0x26FddC1C2c84e61457734a17C6818a6E063644ec"
-        senderName="Yo Protocol"
-      />
+      <Subscribe authorizedUser="0x26FddC1C2c84e61457734a17C6818a6E063644ec" senderName="" />
     </div>
   );
 }
