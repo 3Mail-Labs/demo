@@ -21,9 +21,11 @@ export default function Home() {
   };
 
   const sendEmail = async () => {
+    const provider = await connector?.getProvider();
+
     const sentEmails = await sendEmails({
-      privateKey: "8b627bd03db5a0f05cfd2154361e2468db36cfae67986252c55e13e351f2d1e2",
-      content: "Hello from iExec",
+      provider,
+      content: "Hello from iExec!!",
       subject: "Subject",
       senderName: "3mail",
     });

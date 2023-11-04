@@ -1,5 +1,5 @@
 import { IExecDataProtector } from "@iexec/dataprotector";
-import { IExecWeb3mail, getWeb3Provider as getMailProvider, Contact } from "@iexec/web3mail";
+import { IExecWeb3mail, Contact } from "@iexec/web3mail";
 
 interface GrantEmailParams {
   provider: any;
@@ -35,15 +35,14 @@ export async function grantEmailAccess({
 }
 
 interface SendEmailParams {
-  privateKey: string;
+  provider: any;
   subject: string;
   content: string;
   senderName: string;
 }
 
-export async function sendEmails({ content, privateKey, subject, senderName }: SendEmailParams) {
-  const mailWeb3Provider = getMailProvider(privateKey);
-  const web3mail = new IExecWeb3mail(mailWeb3Provider);
+export async function sendEmails({ provider, content, subject, senderName }: SendEmailParams) {
+  const web3mail = new IExecWeb3mail(provider);
 
   const contacts: Contact[] = await web3mail.fetchMyContacts();
 
