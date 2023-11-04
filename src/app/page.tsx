@@ -1,46 +1,33 @@
 "use client";
 
-import { useAccount } from "wagmi";
+// import { useAccount } from "wagmi";
 
-import { Button } from "@/components/ui/button";
-import { grantEmailAccess, sendEmails } from "@/lib/iexec";
+import { Subscribe } from "@/components/subscribe";
+// import { Button } from "@/components/ui/button";
+// import { sendEmails } from "@/lib/iexec";
 
 export default function Home() {
-  const { connector } = useAccount();
+  // const { connector } = useAccount();
 
-  const onSubscribe = async () => {
-    const provider = await connector?.getProvider();
-    const grantedAccess = await grantEmailAccess({
-      provider,
-      authorizedUser: "0x8d960334c2EF30f425b395C1506Ef7c5783789F3",
-      email: "mattiapomelli@gmail.com",
-      numberOfAccess: 1,
-    });
+  // const sendEmail = async () => {
+  //   const provider = await connector?.getProvider();
 
-    console.log("Granted access: ", grantedAccess);
-  };
+  //   const sentEmails = await sendEmails({
+  //     provider,
+  //     content: "Hello from iExec!!",
+  //     subject: "Subject",
+  //     senderName: "3mail",
+  //   });
 
-  const sendEmail = async () => {
-    const provider = await connector?.getProvider();
-
-    const sentEmails = await sendEmails({
-      provider,
-      content: "Hello from iExec!!",
-      subject: "Subject",
-      senderName: "3mail",
-    });
-
-    console.log("Sent emails: ", sentEmails);
-  };
+  //   console.log("Sent emails: ", sentEmails);
+  // };
 
   return (
     <div>
-      <Button onClick={onSubscribe} className="mt-10">
-        Subscribe
-      </Button>
-      <Button onClick={sendEmail} className="mt-10">
+      <Subscribe authorizedUser="0x0F45421E8DC47eF9edd8568a9D569b6fc7Aa7AC6" senderName="AAVE" />
+      {/* <Button onClick={sendEmail} className="mt-10">
         Send email
-      </Button>
+      </Button> */}
     </div>
   );
 }
