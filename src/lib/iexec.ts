@@ -6,6 +6,7 @@ interface GrantEmailParams {
   email: string;
   authorizedUser: string;
   numberOfAccess: number;
+  pricePerAccess: number;
 }
 
 export async function grantEmailAccess({
@@ -13,6 +14,7 @@ export async function grantEmailAccess({
   provider,
   authorizedUser,
   numberOfAccess,
+  pricePerAccess,
 }: GrantEmailParams) {
   const dataProtector = new IExecDataProtector(provider);
 
@@ -29,6 +31,7 @@ export async function grantEmailAccess({
     authorizedApp: "web3mail.apps.iexec.eth",
     authorizedUser,
     numberOfAccess,
+    pricePerAccess,
   });
 
   return grantedAccess;

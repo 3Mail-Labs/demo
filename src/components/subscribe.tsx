@@ -18,6 +18,7 @@ const API_URL = env.NEXT_PUBLIC_API_URL;
 export const subscribeSchema = z.object({
   email: z.string().email(),
   numberOfAccess: z.string().regex(/^\d+$/),
+  pricePerAccess: z.string(),
 });
 
 type SubscribeData = z.infer<typeof subscribeSchema>;
@@ -51,6 +52,7 @@ export function Subscribe({ authorizedUser, senderName }: SubscribeProps) {
         authorizedUser,
         email: data.email,
         numberOfAccess: Number(data.numberOfAccess),
+        pricePerAccess: Number(data.pricePerAccess),
       });
 
       console.log("Granted access: ", grantedAccess);
@@ -64,6 +66,7 @@ export function Subscribe({ authorizedUser, senderName }: SubscribeProps) {
           address,
           userAddress: authorizedUser,
           numberOfAccess: Number(data.numberOfAccess),
+          pricePerEmail: Number(data.pricePerAccess),
         }),
       });
 
@@ -110,7 +113,7 @@ export function Subscribe({ authorizedUser, senderName }: SubscribeProps) {
         </div>
         <div>
           <Label htmlFor="numberOfAccess" className="mb-2 block">
-            Number of accesses (how many emails the sender can send you)
+            Number of emails (how many emails the sender can send you)
           </Label>
           <Input
             id="numberOfAccess"
@@ -122,6 +125,23 @@ export function Subscribe({ authorizedUser, senderName }: SubscribeProps) {
           />
           {errors?.numberOfAccess && (
             <p className="px-1 text-xs text-red-600">{errors.numberOfAccess.message}</p>
+          )}
+        </div>
+        <div>
+          <Label htmlFor="pricePerAccess" className="mb-2 block">
+            Price per email
+          </Label>
+          <Input
+            id="pricePerAccess"
+            type="number"
+            autoCapitalize="none"
+            autoCorrect="off"
+            step={0.01}
+            // disabled={isLoading || isGitHubLoading}
+            {...register("pricePerAccess")}
+          />
+          {errors?.pricePerAccess && (
+            <p className="px-1 text-xs text-red-600">{errors.pricePerAccess.message}</p>
           )}
         </div>
         <button
