@@ -1552,11 +1552,13 @@
   resolved "https://registry.yarnpkg.com/@humanwhocodes/object-schema/-/object-schema-2.0.1.tgz#e5211452df060fa8522b55c7b3c0c4d1981cb044"
   integrity sha512-dvuCeX5fC9dXgJn9t+X5atfmgQAzUOWqS1254Gh0m6i8wKd10ebXkfNKiRK+1GWi/yTvvLDHpoxLr0xxxeslWw==
 
-"@iexec/dataprotector@0.2.0":
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/@iexec/dataprotector/-/dataprotector-0.2.0.tgz#a7c55c17749b672a53ed52225f21efa60c01c9a2"
-  integrity sha512-mni2ILNpCsJDoVMDxd63lrRaT/YDbx/eLSDjTQgpU+3M19oBWPmuD/cVw62gVHd7oE0tR/KRinUMbUZr7wpcJw==
+"@iexec/dataprotector@^0.3.0":
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/@iexec/dataprotector/-/dataprotector-0.3.0.tgz#e67144a407f91b4f4fc953abd5da63b7b6409556"
+  integrity sha512-PGFI6rFisFmg5KbiDbutcjDxNNltk9PIILT3jkYNl95d5/pdvVnTRut9ATGYkjUSeVM5pNnt0QvQjbOf2sehyg==
   dependencies:
+    "@ethersproject/bytes" "^5.7.0"
+    "@ethersproject/random" "^5.7.0"
     "@multiformats/multiaddr" "^12.1.3"
     debug "^4.3.4"
     ethers "^5.7.2"
@@ -1599,18 +1601,6 @@
   dependencies:
     "@openzeppelin/contracts" "3.0.0-rc.0"
     solstruct "0.0.13"
-
-"@iexec/web3mail@0.5.1":
-  version "0.5.1"
-  resolved "https://registry.yarnpkg.com/@iexec/web3mail/-/web3mail-0.5.1.tgz#c7a464fa67a072c8b632b7c520d813e5a122e5b1"
-  integrity sha512-B1fTr0zloUiSTDJkcgNTQrHhDRv68pDLHStCwmNnCPjO8x9vA+05AFXsDIw39/pQlwWOVzMKmLfvLBgUa3XQ5Q==
-  dependencies:
-    "@ethersproject/bytes" "^5.7.0"
-    "@ethersproject/random" "^5.7.0"
-    graphql-request "^6.1.0"
-    iexec "^8.2.1"
-    kubo-rpc-client "^3.0.1"
-    yup "^1.1.1"
 
 "@ipld/dag-cbor@^9.0.0":
   version "9.0.6"
@@ -5619,7 +5609,7 @@ eth-rpc-errors@^4.0.2:
   dependencies:
     fast-safe-stringify "^2.0.6"
 
-ethers@5.7.2, ethers@^5.7.2:
+ethers@^5.7.2:
   version "5.7.2"
   resolved "https://registry.yarnpkg.com/ethers/-/ethers-5.7.2.tgz#3a7deeabbb8c030d4126b24f84e525466145872e"
   integrity sha512-wswUsmWo1aOK8rR7DIKiWSw9DbLWe6x98Jrn8wcTflTVvaXhAMaB5zGAXy0GYQEQp9iO1iSHWVyARQm11zUtyg==
@@ -6058,13 +6048,18 @@ graphemer@^1.4.0:
   resolved "https://registry.yarnpkg.com/graphemer/-/graphemer-1.4.0.tgz#fb2f1d55e0e3a1849aeffc90c4fa0dd53a0e66c6"
   integrity sha512-EtKwoO6kxCL9WO5xipiHTZlSzBm7WLT627TqC/uVRd0HKmq8NXyebnNYxDoBi7wt8eTWrUrKXCOVaFq9x1kgag==
 
-graphql-request@^6.0.0, graphql-request@^6.1.0:
+graphql-request@^6.0.0:
   version "6.1.0"
   resolved "https://registry.yarnpkg.com/graphql-request/-/graphql-request-6.1.0.tgz#f4eb2107967af3c7a5907eb3131c671eac89be4f"
   integrity sha512-p+XPfS4q7aIpKVcgmnZKhMNqhltk20hfXtkaIkTfjjmiKMJ5xrt5c743cL03y/K7y1rg3WrIC49xGiEQ4mxdNw==
   dependencies:
     "@graphql-typed-document-node/core" "^3.2.0"
     cross-fetch "^3.1.5"
+
+graphql@^16.8.1:
+  version "16.8.1"
+  resolved "https://registry.yarnpkg.com/graphql/-/graphql-16.8.1.tgz#1930a965bef1170603702acdb68aedd3f3cf6f07"
+  integrity sha512-59LZHPdGZVh695Ud9lRzPBVTtlX9ZCV150Er2W43ro37wVof0ctenSaskPPjN7lVTIN8mSZt8PHUNKZuNQUuxw==
 
 has-bigints@^1.0.1, has-bigints@^1.0.2:
   version "1.0.2"
@@ -6184,7 +6179,7 @@ ieee754@^1.1.13, ieee754@^1.2.1:
   resolved "https://registry.yarnpkg.com/ieee754/-/ieee754-1.2.1.tgz#8eb7a10a63fff25d15a57b001586d177d1b0d352"
   integrity sha512-dcyqhDvX1C46lXZcVqCpK+FtMRQVdIMN6/Df5js2zouUsqG7I6sFxitIC+7KYK29KdXOLHdu9zL4sFnoVQnqaA==
 
-iexec@^8.2.1, iexec@^8.4.0:
+iexec@^8.4.0:
   version "8.5.0"
   resolved "https://registry.yarnpkg.com/iexec/-/iexec-8.5.0.tgz#2428450bca53dc7712271bf52e2e451a52530ed3"
   integrity sha512-z44q80BhL0L1EMI2fK3lGR1J4q5z8gX12XBNLycW10irXA8Vv2IQ/M6koprpYP9VReKhRuyz2hLSUil7WB8QFg==
@@ -6988,7 +6983,7 @@ keyvaluestorage-interface@^1.0.0:
   resolved "https://registry.yarnpkg.com/keyvaluestorage-interface/-/keyvaluestorage-interface-1.0.0.tgz#13ebdf71f5284ad54be94bd1ad9ed79adad515ff"
   integrity sha512-8t6Q3TclQ4uZynJY9IGr2+SsIGwK9JHcO6ootkHCGA0CrQCRy+VkouYNO2xicET6b9al7QKzpebNow+gkpCL8g==
 
-kubo-rpc-client@^3.0.0, kubo-rpc-client@^3.0.1:
+kubo-rpc-client@^3.0.0:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/kubo-rpc-client/-/kubo-rpc-client-3.0.1.tgz#61e4c64ccab6bf1bb6147dc8c45a423b95638fa7"
   integrity sha512-2SMH/eCZlwR/4e9Aqr0HC1gJvCDTsgBRWRdu4LjHLrRwGsmDAl32vK4PkwkKfYwgJMHY3lgA6eZzaOLzrPwxFg==
@@ -9899,7 +9894,7 @@ yocto-queue@^0.1.0:
   resolved "https://registry.yarnpkg.com/yocto-queue/-/yocto-queue-0.1.0.tgz#0294eb3dee05028d31ee1a5fa2c556a6aaf10a1b"
   integrity sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==
 
-yup@^1.0.2, yup@^1.1.1, yup@^1.3.2:
+yup@^1.0.2, yup@^1.3.2:
   version "1.3.2"
   resolved "https://registry.yarnpkg.com/yup/-/yup-1.3.2.tgz#afffc458f1513ed386e6aaf4bcaa4e67a9e270dc"
   integrity sha512-6KCM971iQtJ+/KUaHdrhVr2LDkfhBtFPRnsG1P8F4q3uUVQ2RfEM9xekpha9aA4GXWJevjM10eDcPQ1FfWlmaQ==

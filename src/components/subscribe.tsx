@@ -83,6 +83,8 @@ export function Subscribe({ authorizedUser, senderName }: SubscribeProps) {
         variant: "default",
       });
     } catch (error) {
+      console.error(error);
+
       toast({
         title: "Something went wrong.",
         description: "Please retry in a few minutes",
