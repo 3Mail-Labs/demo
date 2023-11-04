@@ -1,11 +1,12 @@
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useWeb3Modal } from "@web3modal/wagmi/react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useAccount } from "wagmi";
 import { z } from "zod";
 
 import { Icons } from "@/components/icons";
-import { buttonVariants } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { toast } from "@/components/ui/use-toast";
@@ -28,8 +29,9 @@ interface SubscribeProps {
   senderName: string;
 }
 
-export function Subscribe({ authorizedUser, senderName }: SubscribeProps) {
-  const { connector, address } = useAccount();
+export default function Subscribe({ authorizedUser, senderName }: SubscribeProps) {
+  const { open } = useWeb3Modal();
+  const { connector, address, isConnected } = useAccount();
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const {
@@ -146,15 +148,21 @@ export function Subscribe({ authorizedUser, senderName }: SubscribeProps) {
             <p className="px-1 text-xs text-red-600">{errors.pricePerAccess.message}</p>
           )}
         </div>
-        <button
-          className={cn(buttonVariants(), {
-            "cursor-not-allowed opacity-60": isLoading,
-          })}
-          disabled={isLoading}
-        >
-          {isLoading && <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />}
-          Subscribe to {senderName}
-        </button>
+        {isConnected ? (
+          <button
+            className={cn(buttonVariants(), {
+              "cursor-not-allowed opacity-60": isLoading,
+            })}
+            disabled={isLoading}
+          >
+            {isLoading && <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />}
+            Subscribe to {senderName}
+          </button>
+        ) : (
+          <Button type="button" onClick={() => open()}>
+            Connect Wallet
+          </Button>
+        )}
       </form>
     </div>
   );

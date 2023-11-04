@@ -1,23 +1,19 @@
 "use client";
 
-import { useWeb3Modal } from "@web3modal/wagmi/react";
-import { useEffect } from "react";
+import { useAccount } from "wagmi";
 
-// import { Subscribe } from "@/components/subscribe";
+import { ChainSwitch } from "@/components/chain-switch";
+import FakeSubscribe from "@/components/fake-subscribe";
 
 export default function Home() {
-  const { open } = useWeb3Modal();
-
-  useEffect(() => {
-    open();
-  }, [open]);
+  const { isConnecting, isReconnecting } = useAccount();
 
   return (
-    <div>
-      {/* <Subscribe
-        authorizedUser="0x26FddC1C2c84e61457734a17C6818a6E063644ec"
-        senderName="Yo Protocol"
-      /> */}
+    <div className="mt-10 flex flex-col gap-8">
+      <div className="mx-auto flex h-10 gap-2 duration-100 fade-in">
+        {!isConnecting && !isReconnecting && <ChainSwitch />}
+      </div>
+      <FakeSubscribe />
     </div>
   );
 }
