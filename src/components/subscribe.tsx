@@ -48,6 +48,8 @@ export default function Subscribe({ authorizedUser, senderName }: SubscribeProps
 
     const provider = await connector?.getProvider();
 
+    console.log("Authorized user: ", authorizedUser);
+
     try {
       const grantedAccess = await grantEmailAccess({
         provider,
@@ -81,7 +83,7 @@ export default function Subscribe({ authorizedUser, senderName }: SubscribeProps
 
       toast({
         title: "Subscribed!",
-        description: `You are subcribed to ${senderName}!`,
+        description: `You are subcribed ${senderName ? "to " + senderName : ""}!`,
         variant: "default",
       });
     } catch (error) {
@@ -106,7 +108,6 @@ export default function Subscribe({ authorizedUser, senderName }: SubscribeProps
           </Label>
           <Input
             id="email"
-            placeholder="My project"
             type="text"
             autoCapitalize="none"
             autoCorrect="off"

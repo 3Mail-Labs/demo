@@ -9,7 +9,11 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
-export default function FakeSubscribe() {
+interface SubscribeProps {
+  address: string;
+}
+
+export default function FakeSubscribe({ address }: SubscribeProps) {
   const { open } = useWeb3Modal();
   const { isConnected } = useAccount();
 
@@ -18,16 +22,16 @@ export default function FakeSubscribe() {
   useEffect(() => {
     setTimeout(() => {
       if (isConnected) {
-        router.push("/subscribe");
+        router.push(`/${address}/subscribe`);
       }
     });
-  }, [router, isConnected]);
+  }, [router, isConnected, address]);
 
   const onConnect = async () => {
     await open();
 
     setTimeout(() => {
-      router.push("/subscribe");
+      router.push(`/${address}/subscribe`);
     }, 500);
   };
 
@@ -38,14 +42,7 @@ export default function FakeSubscribe() {
           <Label htmlFor="email" className="mb-2 block">
             Email
           </Label>
-          <Input
-            id="email"
-            placeholder="My project"
-            type="text"
-            autoCapitalize="none"
-            autoCorrect="off"
-            disabled
-          />
+          <Input id="email" type="text" autoCapitalize="none" autoCorrect="off" disabled />
         </div>
         <div>
           <Label htmlFor="numberOfAccess" className="mb-2 block">
