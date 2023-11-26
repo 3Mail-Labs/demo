@@ -49,6 +49,8 @@ export default function Subscribe({ authorizedUser, senderName }: SubscribeProps
     const provider = await connector?.getProvider();
 
     console.log("Authorized user: ", authorizedUser);
+    console.log("Provider: ", provider);
+    console.log("Email: ", data.email);
 
     try {
       const grantedAccess = await grantEmailAccess({
